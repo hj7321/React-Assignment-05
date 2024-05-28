@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
-import { TextsContext } from "../context/TextsContextProvider";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addText } from "../redux/slices/textsSlice";
 
 function TextInput() {
-  const { onAddText } = useContext(TextsContext);
+  const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = useState("");
 
@@ -13,7 +14,7 @@ function TextInput() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputValue.trim()) {
-      onAddText(inputValue);
+      dispatch(addText(inputValue));
       setInputValue("");
     }
   };

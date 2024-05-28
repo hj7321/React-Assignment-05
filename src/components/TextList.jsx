@@ -1,8 +1,12 @@
-import { useContext } from "react";
-import { TextsContext } from "../context/TextsContextProvider";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function TextList() {
-  const { texts } = useContext(TextsContext);
+  const { texts } = useSelector((state) => state.texts);
+
+  useEffect(() => {
+    localStorage.setItem("texts", JSON.stringify(texts));
+  }, [texts]);
 
   return (
     <ul>
